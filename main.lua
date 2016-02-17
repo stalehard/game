@@ -30,19 +30,21 @@ function love.update(dt)
 	end		
 
 	if not joystick then return end
- 
-    if joystick:isGamepadDown("dpleft") then
-    	if player.x > 0 then -- binds us to the map
-        	player.x = player.x - player.speed * dt
-    	end
-    elseif joystick:isGamepadDown("dpright") then
-    	if player.x < (love.graphics.getWidth() - player.img:getWidth()) then
-        	player.x = player.x + player.speed * dt
-    	end
-    end
+
+	max_x = love.graphics.getWidth() - player.img:getWidth()
+
+	player.x = player.x + joystick:getGamepadAxis("leftx")
+	if player.x < 0	then
+		player.x = 0
+	elseif player.x > max_x then
+		player.x = max_x	
+	end    	
+	
 end
 
 -- Drawing
 function love.draw(dt)	
-	love.graphics.draw(player.img, player.x, player.y)
+	love.graphics.draw(player.img, player.x, player.y)	
+    -- love.graphics.print(z, 10, 200)
+    -- love.graphics.print(i, 10, 100)
 end
