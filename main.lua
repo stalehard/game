@@ -45,6 +45,7 @@ end
 -- Drawing
 function love.draw(dt)	
 	love.graphics.draw(player.img, player.x, player.y)	
-    -- love.graphics.print(z, 10, 200)
-    -- love.graphics.print(i, 10, 100)
+    love.graphics.print(z, 10, 200)
+    love.graphics.print(i, 10, 100)
 end
+
